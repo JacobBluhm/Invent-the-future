@@ -1,0 +1,31 @@
+
+A 12, inc. production, copyrights 2018
+
+"""
+import numpy as np
+import random as rd
+
+#variabler
+input_data = np.array([1,2])
+number_of_training = 100
+target_value = 10
+training_rate = 0.1
+start_value = 0
+#funktioner
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+def slope(x):
+    return 2*(x-target_value)
+#vægte
+weight = dict()
+weight['output'] = np.array([rd.uniform(-1,1),rd.uniform(-1,1)])
+start_value = (weight['output']*input_data).sum()
+print("før træning: ")
+print(start_value)
+#træning
+for i in range(number_of_training):
+    output = (weight['output']*input_data).sum()
+    print(output)
+    weight['output'] = weight['output'] - training_rate *slope(output)
+print("\n\nEfter træning:")
+print(output)
